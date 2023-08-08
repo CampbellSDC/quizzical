@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Intro(){
+export default function Intro(props){
+
+   
     return (
 
         // TODO: Basic intro page will go here with button to open quiz app
@@ -17,7 +19,7 @@ export default function Intro(){
 
             <h4 className="intro-description">We will randomly select a category, and provide 10 random questions from that category</h4>
 
-            <button className='start-btn'>Start Quiz</button>
+            <button onClick={props.handleClick} className='start-btn'>Start Quiz</button>
 
         </div>
         </>
