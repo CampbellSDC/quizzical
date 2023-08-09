@@ -1,6 +1,10 @@
 import React from 'react'
 
-export default function Questions() {
+export default function Questions(props) {
+    console.log(props)
+
+    
+    
     return (
 
         /** TODO: Need to look at the question API and figure out how many questions 
@@ -11,11 +15,16 @@ export default function Questions() {
                 mapping over the state of array questions
                     - Need questions, answers
             - Call variable below in component to render on page
-            
+
          **/ 
         
 <>
+        <div className="question-container">
+            <h3 className="question"></h3>
+            <div className="answer-container">
 
+            </div>
+        </div>
 </>
 
     )
