@@ -13,7 +13,7 @@ export default function Intro(props){
         // H4 description of quiz if needed
         // Button to start quiz (this will hold the fetch for the API, hide the intro screen, and display the Quiz component)
         <>
-        <div className="intro-container">
+        <div id="intro-container">
 
             <h1 className="intro-title">Quizzical!</h1>
 
