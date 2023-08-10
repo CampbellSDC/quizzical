@@ -1,30 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import he from 'he'
 
 export default function Questions(props) {
-   
+   const [shuffledAnswers, setShuffledAnswers] = useState([])
+
+    useEffect(  () => {
+        
+        const allAnswers = [...props.incorrect_answers, props.correct_answer]
+        
+        shuffleArray(allAnswers)
+        setShuffledAnswers(allAnswers)
+    }, [props])
+
+    function shuffleArray(array){
+        for(let i = 0; i < array.length; i++){
+            let temp = he.decode(array[i])
+            let r = Math.floor(Math.random() * array.length)
+
+            array[i] = array[r]
+            array[r] = temp
+
+        }
+        return array
+    }
+    
 
     
     
     return (
 
-        /** TODO: Need to look at the question API and figure out how many questions 
-         I want to use on the quiz.
-            - Find number of questions
-            - Create state for array of questions
-            - Create variable that holds function to create the DOM elements by
-                mapping over the state of array questions
-                    - Need questions, answers
-            - Call variable below in component to render on page
-
-         **/ 
         
 <>
         <div className="question-container">
             <h3 className="question">{props.question}</h3>
             <div className="answer-container">
-        <input type="button" value={props.correct_answer} />
+                {shuffledAnswers.map((value, index) => (
+                    <input type="button" key={index} value={value} />)
+                )}
+        
             </div>
         </div>
+        
 </>
 
     )
