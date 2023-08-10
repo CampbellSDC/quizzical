@@ -54,11 +54,28 @@
 
 .answer-container {
   margin-top: 20px;
+  max-width: 50%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .answer-container input {
   border: none;
-  border-radius: 7px;
+  border-radius: 12px;
   padding: 7px 15px;
+  background:none;
+  color: #293264;
+  border: 1px solid #4D5B9E;
+
+  
+}
+
+input:hover {
+  background-color: #D6DBF5;
+}
+
+input:active {
+  border: none;
+  background-color: #D6DBF5;
 }
 

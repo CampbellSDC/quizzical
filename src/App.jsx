@@ -21,8 +21,14 @@ function App() {
       setQuizQuestions(data.results)
       setQuizStarted(true)
   }
-
+  const answersArray = []
+  const answers = quizQuestions.map(item => {
+    const random = Math.random()
+    answersArray.push(item.incorrect_answers)
+   
+  })
   
+  console.log(answersArray)
  const theQuiz = quizQuestions.map(item => <Questions
         key={nanoid()}
         question={he.decode(item.question)}
@@ -31,11 +37,13 @@ function App() {
   />)
 
 
-  // 
+  
 
 
 
- 
+  function checkAnswers(){
+    console.log(quizQuestions)
+}
 
 
   return (
@@ -44,6 +52,7 @@ function App() {
     {quizStarted ?
     <main className="quiz-container">
       {theQuiz}
+      <button onClick={checkAnswers}>Check answers</button>
     </main>
     
      :
