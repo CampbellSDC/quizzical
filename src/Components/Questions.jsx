@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Questions(props) {
-    console.log(props)
+   
 
     
     
@@ -20,9 +20,9 @@ export default function Questions(props) {
         
 <>
         <div className="question-container">
-            <h3 className="question"></h3>
+            <h3 className="question">{props.question}</h3>
             <div className="answer-container">
-
+        <input type="button" value={props.correct_answer} />
             </div>
         </div>
 </>

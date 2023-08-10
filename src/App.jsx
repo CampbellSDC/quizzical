@@ -1,45 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {nanoid} from 'nanoid'
+import he from 'he'
 import Intro from './Components/Intro'
 import Questions from './Components/Questions'
 import './App.css'
 
 function App() {
-  const [quizQuestions, setQuizQuestions] = React.useState(getQuiz())
 
-  //TODO: Now that quizQuestions state is established, this will be used in the quiz component
-  //TODO: to map over the quizQuestions array, and create a variable that holds 
-  //TODO: the 10 questions that are retrieved from the fetch. This will be done
-  //TODO: by assigning quizQuestions as a prop for the questions component.
+
+    const [quizQuestions, setQuizQuestions] = useState([])
+    const [quizStarted, setQuizStarted] = useState(false)
+  
+  
+ const fetchQuestions = async () =>  {
 
   
+    const response = await fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple")
+    const data = await response.json()
 
-  function getQuiz() {
-
-  
-    fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple")
-    .then(res => res.json())
-    .then(data => {
-      
-      const questions = data.results
-      quizReady(questions)
-
-    })
-    
+      setQuizQuestions(data.results)
+      setQuizStarted(true)
   }
 
   
- 
+ const theQuiz = quizQuestions.map(item => <Questions
+        key={nanoid()}
+        question={he.decode(item.question)}
+        correct_answer={item.correct_answer}
+        incorrect_answers={item.incorrect_answers}
+  />)
 
 
-
-function quizReady(newQuestions){
-  setQuizQuestions(newQuestions)
-  
-}
-
-
-
-
+  // 
 
 
 
@@ -48,11 +40,23 @@ function quizReady(newQuestions){
 
   return (
     <>
-      <Intro
-        handleClick={getQuiz}
+
+    {quizStarted ?
+    <main className="quiz-container">
+      {theQuiz}
+    </main>
+    
+     :
+(
+<Intro
+        handleClick={fetchQuestions}
       />
 
-     
+     )
+  }
+      
+
+        
       
     </>
   )

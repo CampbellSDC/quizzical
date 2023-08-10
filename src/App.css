@@ -34,3 +34,31 @@
 .start-btn:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: auto;
+  max-width: 800px;
+  background-color: #F5F7FB;
+}
+
+.question-container {
+  padding: 1rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+  width: 100%;
+}
+
+.answer-container {
+  margin-top: 20px;
+}
+
+.answer-container input {
+  border: none;
+  border-radius: 7px;
+  padding: 7px 15px;
+}
+
