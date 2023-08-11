@@ -79,6 +79,6 @@ input:active {
   background-color: #D6DBF5;
 }
 
-.clicked {
-  background-color: green;
+.answer-container .clicked {
+  background-color: #4D5B9E;
 }
