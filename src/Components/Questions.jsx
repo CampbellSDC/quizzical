@@ -3,6 +3,11 @@ import he from 'he'
 
 export default function Questions(props) {
    const [shuffledAnswers, setShuffledAnswers] = useState([])
+   const [clickedAnswers, setClickedAnswers] = useState({})
+
+   const style = {
+       backgroundColor: props.isClicked ? "#D6DBF5" : "none"
+   }
 
     useEffect(  () => {
         
@@ -24,6 +29,13 @@ export default function Questions(props) {
         return array
     }
     
+    const handleAnswerClick = (answer) => {
+        setClickedAnswers((prevClick) => ({
+            ...prevClick,
+            [answer]:true
+        }))
+        console.log(answer)
+    }
 
     
     
@@ -35,7 +47,13 @@ export default function Questions(props) {
             <h3 className="question">{props.question}</h3>
             <div className="answer-container">
                 {shuffledAnswers.map((value, index) => (
-                    <input type="button" key={index} value={value} />)
+                    <input 
+                    type="button" 
+                    key={index} 
+                    value={value}  
+                    onClick={() => handleAnswerClick(value)}
+                    className={clickedAnswers[value] ? "clicked" : ""}
+                    />)
                 )}
         
             </div>
