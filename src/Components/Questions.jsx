@@ -30,10 +30,7 @@ export default function Questions(props) {
     }
     
     const handleAnswerClick = (answer) => {
-        setClickedAnswers((prevClick) => ({
-            ...prevClick,
-            [answer]:true
-        }))
+        setClickedAnswers(answer)
         console.log(answer)
     }
 
@@ -52,7 +49,7 @@ export default function Questions(props) {
                     key={index} 
                     value={value}  
                     onClick={() => handleAnswerClick(value)}
-                    className={clickedAnswers[value] ? "clicked" : ""}
+                    className={clickedAnswers === value ? "clicked" : ""}
                     />)
                 )}
         
