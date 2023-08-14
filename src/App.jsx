@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {nanoid} from 'nanoid'
 import he from 'he'
 import Intro from './Components/Intro'
@@ -12,6 +12,7 @@ function App() {
     const [quizStarted, setQuizStarted] = useState(false)
     const [isClicked, setIsClicked] = useState(false)
     
+    
   
   
  const fetchQuestions = async () =>  {
@@ -19,34 +20,34 @@ function App() {
   
     const response = await fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple")
     const data = await response.json()
-
-      setQuizQuestions(data.results)
+      const items = data.results.map((item)=> ({
+        ...item,
+        id:nanoid()
+      }))
+      
       setQuizStarted(true)
+     setQuizQuestions(items)
+     
+
+       
+      
+     
   }
 
+
+  useEffect(() => {
+    console.log(quizQuestions)
+  }, [quizQuestions])
+  
 
  const theQuiz = quizQuestions.map(item => <Questions
-        key={nanoid()}
-        clicked={isClicked}
-        question={he.decode(item.question)}
+        key={item.id}
+        question = {item.question}
         correct_answer={item.correct_answer}
         incorrect_answers={item.incorrect_answers}
-        handleClick={() => handleClick(quizQuestions.id)}
+  
   />)
 
-  function handleClick(){
-    setIsClicked(!isClicked)
-  }
-
-  function clickInput(){
-    for(const answer of quizQuestions){
-      console.log("answer")
-    }
-  }
-
-  clickInput()
-// On click of answer, highlight the input element
-  // {function here}
 
 /** On click of check answers, loop through quizQuestions
  *  Create variable that tracks score, initialize to 0
@@ -63,9 +64,6 @@ function App() {
 */
 
 
-  function checkAnswers(){
-    console.log(quizQuestions[0].correct_answer)
-}
 
 
   return (
@@ -74,7 +72,7 @@ function App() {
     {quizStarted ?
     <main className="quiz-container">
       {theQuiz}
-      <button onClick={checkAnswers}>Check answers</button>
+      <button >Check answers</button>
     </main>
     
      :
