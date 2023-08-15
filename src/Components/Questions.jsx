@@ -3,17 +3,9 @@ import he from 'he'
 
 export default function Questions(props) {
    const [shuffledAnswers, setShuffledAnswers] = useState([])
-   const [selectedAnswers, setSelectedAnswers] = useState([])
-
-
-   useEffect(() => {
-    console.log(selectedAnswers)
-   }, [])
+   const [selectedAnswer, setSelectedAnswer] = useState(null)
    
 
-   const style = {
-       backgroundColor: props.isClicked ? "#D6DBF5" : "none"
-   }
 
     useEffect(  () => {
         
@@ -21,13 +13,13 @@ export default function Questions(props) {
         
         shuffleArray(allAnswers)
         setShuffledAnswers(allAnswers)
-    }, [props])
+    }, [])
 
 
 
     function shuffleArray(array){
         for(let i = 0; i < array.length; i++){
-            let temp = array[i]
+            let temp = he.decode(array[i])
             let r = Math.floor(Math.random() * array.length)
 
             array[i] = array[r]
@@ -40,18 +32,12 @@ export default function Questions(props) {
 
     
     const handleAnswerClick = (answer) => {
-       
-          setSelectedAnswers(
-            console.log(answer)
-            )
-           
+       setSelectedAnswer((prevAnswer) => (prevAnswer === answer ? null : answer))
        
        
       }
 
-      
-
-    const isAnswerSelected = (answer) => selectedAnswers === answer
+    
       
       
     
@@ -67,8 +53,8 @@ export default function Questions(props) {
                     type="button" 
                     key={index} 
                     value={value}  
-                    onClick={() => handleAnswerClick(props.key)}
-                    className={isAnswerSelected(value) ? "clicked" : ""}
+                    onClick={() => handleAnswerClick(value)}
+                    className={selectedAnswer === value ? "clicked" : ""}
                     />)
                 )}
         
