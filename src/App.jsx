@@ -10,7 +10,7 @@ function App() {
 
     const [quizQuestions, setQuizQuestions] = useState([])
     const [quizStarted, setQuizStarted] = useState(false)
-    const [isClicked, setIsClicked] = useState(false)
+    const [selectedAnswer, setSelectedAnswers] = useState([])
     
     
   
@@ -27,26 +27,43 @@ function App() {
       
       setQuizStarted(true)
      setQuizQuestions(items)
-     
+     }
 
-       
-      
-     
+
+  
+
+const handleAnswerSelection = (questionId, selectedAnswer) => {
+  setSelectedAnswers((prevAnswer) => ({
+    ...prevAnswer,
+    [questionId]: selectedAnswer
+  }))
+}
+
+ const theQuiz = quizQuestions.map(item => <Questions
+        key={item.id}
+        question = {he.decode(item.question)}
+        correct_answer={item.correct_answer}
+        incorrect_answers={item.incorrect_answers}
+        onSelectAnswer={(selectedAnswer) => handleAnswerSelection(item.id, selectedAnswer)}
+  
+  />)
+
+
+  const handleCheckAnswers = () => {
+    for(let i=0; i<quizQuestions.length; i++){
+     if(selectedAnswer === quizQuestions.correct_answer){
+       console.log("correct!")
+     } else {
+       console.log('incorrect')
+     }
+    }
+    
   }
 
 
   useEffect(() => {
-    console.log(quizQuestions)
-  }, [quizQuestions])
-  
-
- const theQuiz = quizQuestions.map(item => <Questions
-        key={item.id}
-        question = {item.question}
-        correct_answer={item.correct_answer}
-        incorrect_answers={item.incorrect_answers}
-  
-  />)
+    console.log(selectedAnswer)
+  }, [selectedAnswer])
 
 
 /** On click of check answers, loop through quizQuestions
@@ -72,7 +89,7 @@ function App() {
     {quizStarted ?
     <main className="quiz-container">
       {theQuiz}
-      <button >Check answers</button>
+      <button onClick={handleCheckAnswers} >Check answers</button>
     </main>
     
      :
