@@ -10,7 +10,8 @@ function App() {
 
     const [quizQuestions, setQuizQuestions] = useState([])
     const [quizStarted, setQuizStarted] = useState(false)
-    const [selectedAnswer, setSelectedAnswers] = useState([])
+    const [selectedAnswers, setSelectedAnswers] = useState({})
+    
     
     
   
@@ -44,6 +45,7 @@ const handleAnswerSelection = (questionId, selectedAnswer) => {
         question = {he.decode(item.question)}
         correct_answer={item.correct_answer}
         incorrect_answers={item.incorrect_answers}
+        selectedAnswer={selectedAnswers[item.id]}
         onSelectAnswer={(selectedAnswer) => handleAnswerSelection(item.id, selectedAnswer)}
   
   />)
@@ -51,19 +53,21 @@ const handleAnswerSelection = (questionId, selectedAnswer) => {
 
   const handleCheckAnswers = () => {
     for(let i=0; i<quizQuestions.length; i++){
-     if(selectedAnswer === quizQuestions.correct_answer){
-       console.log("correct!")
-     } else {
-       console.log('incorrect')
-     }
+    const question = quizQuestions[i]
+    const selectedAnswerForQuestion = selectedAnswers[question.id]
+    console.log(selectedAnswerForQuestion)
+    console.log(question.correct_answer)
+      if(selectedAnswerForQuestion === question.correct_answer) {
+        console.log("correct!")
+      } else {
+        console.log("incorrect!")
+      }
     }
     
   }
 
 
-  useEffect(() => {
-    console.log(selectedAnswer)
-  }, [selectedAnswer])
+  
 
 
 /** On click of check answers, loop through quizQuestions
