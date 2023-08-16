@@ -37,7 +37,9 @@ export default function Questions(props) {
        
       }
 
-    
+      useEffect(() => {
+        console.log(selectedAnswer)
+      }, [selectedAnswer])
       
       
     
@@ -53,8 +55,8 @@ export default function Questions(props) {
                     type="button" 
                     key={index} 
                     value={value}  
-                    onClick={() => handleAnswerClick(value)}
-                    className={selectedAnswer === value ? "clicked" : ""}
+                    onClick={() => props.onSelectAnswer(value)}
+                    className={props.selectedAnswer === value ? "clicked" : ""}
                     />)
                 )}
         
