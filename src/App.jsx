@@ -57,14 +57,18 @@ const handleAnswerSelection = (questionId, selectedAnswer) => {
     const selectedAnswerForQuestion = selectedAnswers[question.id]
 
     if(selectedAnswerForQuestion === question.correct_answer){
+      score++
       return {...question, isCorrect:true}
+     
+
     } else {
       return {...question, isCorrect:false}
     }
   })
   // This does not seem to be updating quizQuestions with the above "isCorrect"
   setQuizQuestions(updatedQuizQuestions)
-  console.log(quizQuestions)
+  console.log(updatedQuizQuestions)
+  console.log(score)
   }
 
 

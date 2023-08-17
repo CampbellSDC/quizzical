@@ -80,10 +80,10 @@ input:active {
   background-color: #4D5B9E;
 }
 
-.wrong-answer{
+.correct{
   background: rgba(255,0,0,0.4);
 }
 
-.correct-answer {
+.incorrect {
   background: rgba(0,128,0,0.4);
 }
