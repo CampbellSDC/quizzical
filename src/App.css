@@ -79,3 +79,11 @@ input:active {
 .answer-container .clicked {
   background-color: #4D5B9E;
 }
+
+.wrong-answer{
+  background: rgba(255,0,0,0.4);
+}
+
+.correct-answer {
+  background: rgba(0,128,0,0.4);
+}
