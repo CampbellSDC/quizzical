@@ -50,20 +50,21 @@ const handleAnswerSelection = (questionId, selectedAnswer) => {
   
   />)
 
-
+  let score = 0
   const handleCheckAnswers = () => {
-    for(let i=0; i<quizQuestions.length; i++){
-    const question = quizQuestions[i]
-    const selectedAnswerForQuestion = selectedAnswers[question.id]
-    console.log(selectedAnswerForQuestion)
-    console.log(question.correct_answer)
-      if(selectedAnswerForQuestion === question.correct_answer) {
-        console.log("correct!")
-      } else {
-        console.log("incorrect!")
-      }
-    }
     
+  const updatedQuizQuestions = quizQuestions.map((question) => {
+    const selectedAnswerForQuestion = selectedAnswers[question.id]
+
+    if(selectedAnswerForQuestion === question.correct_answer){
+      return {...question, isCorrect:true}
+    } else {
+      return {...question, isCorrect:false}
+    }
+  })
+  // This does not seem to be updating quizQuestions with the above "isCorrect"
+  setQuizQuestions(updatedQuizQuestions)
+  console.log(quizQuestions)
   }
 
 

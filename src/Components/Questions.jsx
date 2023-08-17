@@ -56,7 +56,13 @@ export default function Questions(props) {
                     key={index} 
                     value={value}  
                     onClick={() => props.onSelectAnswer(value)}
-                    className={props.selectedAnswer === value ? "clicked" : ""}
+                    className={
+                        // Need to figure out why this isn't working (possibly due to check answers button)
+                        props.selectedAnswer === value ? "clicked" 
+                        : props.isCorrect ? "correct" 
+                        : "incorrect"
+                        
+                    }
                     />)
                 )}
         
