@@ -63,7 +63,7 @@
   border: none;
   border-radius: 12px;
   padding: 7px 15px;
-  background:none;
+  /* background:none; */
   color: #293264;
   border: 1px solid #4D5B9E;
 
@@ -76,14 +76,14 @@ input:active {
   background-color: #D6DBF5;
 }
 
-.answer-container .clicked {
+.clicked {
   background-color: #4D5B9E;
 }
 
-.correct{
+.incorrect{
   background: rgba(255,0,0,0.4);
 }
 
-.incorrect {
+.correct {
   background: rgba(0,128,0,0.4);
 }
