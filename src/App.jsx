@@ -32,13 +32,15 @@ function App() {
 
 
   
+     const handleAnswerSelection = (questionId, selectedAnswer) => {
+      setSelectedAnswers((prevAnswer) => ({
+        ...prevAnswer,
+        [questionId]: selectedAnswer
+      }))
+      
+    }
 
-const handleAnswerSelection = (questionId, selectedAnswer) => {
-  setSelectedAnswers((prevAnswer) => ({
-    ...prevAnswer,
-    [questionId]: selectedAnswer
-  }))
-}
+
 
  const theQuiz = quizQuestions.map(item => <Questions
         key={item.id}
@@ -48,16 +50,23 @@ const handleAnswerSelection = (questionId, selectedAnswer) => {
         selectedAnswer={selectedAnswers[item.id]}
         onSelectAnswer={(selectedAnswer) => handleAnswerSelection(item.id, selectedAnswer)}
   
+        
   />)
+
+  
 
   let score = 0
   const handleCheckAnswers = () => {
-    
+    console.log(selectedAnswers)
   const updatedQuizQuestions = quizQuestions.map((question) => {
     const selectedAnswerForQuestion = selectedAnswers[question.id]
 
     if(selectedAnswerForQuestion === question.correct_answer){
       score++
+
+      //  *  - display h3 with score
+      //  *  - display "Play again" button
+
       return {...question, isCorrect:true}
      
 
@@ -65,29 +74,12 @@ const handleAnswerSelection = (questionId, selectedAnswer) => {
       return {...question, isCorrect:false}
     }
   })
-  // This does not seem to be updating quizQuestions with the above "isCorrect"
+  
   setQuizQuestions(updatedQuizQuestions)
   console.log(updatedQuizQuestions)
   console.log(score)
   }
 
-
-  
-
-
-/** On click of check answers, loop through quizQuestions
- *  Create variable that tracks score, initialize to 0
- * - Loop through clicked answers to check:
- *  -if quiz questions id correct answer == clicked id answer
- *  - disable all input buttons
- *  - increment score
- *  - highlight correct answer in green
- *  - hightlight incorrect answers in red
- *  - display h3 with score
- *  - display "Play again" button
-
-  
-*/
 
 
 

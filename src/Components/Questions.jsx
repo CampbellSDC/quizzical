@@ -35,6 +35,8 @@ export default function Questions(props) {
       }, [selectedAnswer])
       
       
+        
+     
     
     return (
 
@@ -51,14 +53,10 @@ export default function Questions(props) {
                     onClick={() => props.onSelectAnswer(value)}
                     className={[
                         props.selectedAnswer === value ? "clicked" : "",
-                        props.isCorrect && props.correct_answer === value ? "correct" : "",
+                        props.isCorrect && props.selectedAnswer === value ? "correct" : "",
                         !props.isCorrect && props.selectedAnswer === value ? "incorrect" : ""
-                       
-                    ].join(" ")
-                       
-                        
-                        
-                    }
+                
+                      ].join(" ")}
                     />)
                 )}
         
