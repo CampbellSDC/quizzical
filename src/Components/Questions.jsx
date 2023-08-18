@@ -30,13 +30,6 @@ export default function Questions(props) {
     }
 
 
-    
-    const handleAnswerClick = (answer) => {
-       setSelectedAnswer((prevAnswer) => (prevAnswer === answer ? null : answer))
-       
-       
-      }
-
       useEffect(() => {
         console.log(selectedAnswer)
       }, [selectedAnswer])
@@ -59,7 +52,7 @@ export default function Questions(props) {
                     className={[
                         props.selectedAnswer === value ? "clicked" : "",
                         props.isCorrect && props.correct_answer === value ? "correct" : "",
-                        !props.isCorrect && selectedAnswer ? "incorrect" : ""
+                        !props.isCorrect && props.selectedAnswer === value ? "incorrect" : ""
                        
                     ].join(" ")
                        
