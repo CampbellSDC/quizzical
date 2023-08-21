@@ -11,6 +11,7 @@ function App() {
     const [quizQuestions, setQuizQuestions] = useState([])
     const [quizStarted, setQuizStarted] = useState(false)
     const [selectedAnswers, setSelectedAnswers] = useState({})
+    const [gameOver, setGameOver] = useState(false) //Needs to be used for when to apply styling logic for shading background of correct/incorrect answers
     
     
     
