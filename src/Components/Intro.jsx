@@ -1,17 +1,11 @@
 import React from 'react'
 
-export default function Intro(props){
+export default function Intro({handleClick}){
 
    
     return (
 
-        // TODO: Basic intro page will go here with button to open quiz app
-
-        // TODO: Make sure to set the font family in CSS
-
-        //BASIC H1 TITLE
-        // H4 description of quiz if needed
-        // Button to start quiz (this will hold the fetch for the API, hide the intro screen, and display the Quiz component)
+       
         <>
         <div id="intro-container">
 
@@ -19,7 +13,7 @@ export default function Intro(props){
 
             <h4 className="intro-description">We will randomly select a category, and provide 10 random questions from that category</h4>
 
-            <button onClick={props.handleClick} className='start-btn'>Start Quiz</button>
+            <button onClick={handleClick} className='start-btn'>Start Quiz</button>
 
         </div>
         </>
