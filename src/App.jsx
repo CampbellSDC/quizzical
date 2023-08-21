@@ -19,7 +19,7 @@ function App() {
  const fetchQuestions = async () =>  {
 
   
-    const response = await fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple")
+    const response = await fetch("https://opentdb.com/api.php?amount=5&category=17&difficulty=medium&type=multiple")
     const data = await response.json()
       const items = data.results.map((item)=> ({
         ...item,
@@ -28,9 +28,10 @@ function App() {
       
       setQuizStarted(true)
      setQuizQuestions(items)
+     
      }
 
-
+     console.log(quizQuestions)
   
      const handleAnswerSelection = (questionId, selectedAnswer) => {
       setSelectedAnswers((prevAnswer) => ({

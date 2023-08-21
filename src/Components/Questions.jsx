@@ -4,6 +4,8 @@ import he from 'he'
 export default function Questions(props) {
    const [shuffledAnswers, setShuffledAnswers] = useState([])
    const [selectedAnswer, setSelectedAnswer] = useState(null)
+
+  
    
 
 
@@ -51,12 +53,13 @@ export default function Questions(props) {
                     key={index} 
                     value={value}  
                     onClick={() => props.onSelectAnswer(value)}
-                    className={[
-                        props.selectedAnswer === value ? "clicked" : "",
-                        props.isCorrect && props.selectedAnswer === value ? "correct" : "",
-                        !props.isCorrect && props.selectedAnswer === value ? "incorrect" : ""
-                
-                      ].join(" ")}
+                    className={
+                        props.selectedAnswer === value ? "clicked" : 
+                        props.selectedAnswer === value ? "correct" :
+                        props.incorrect_answers === value ? "incorrect" 
+                        : ""
+            
+                      }
                     />)
                 )}
         
