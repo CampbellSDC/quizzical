@@ -33,6 +33,8 @@ export default function Questions(props) {
 
 
       useEffect(() => {
+         
+          console.log(props.incorrect_answers)
         // console.log(selectedAnswer)
         // console.log(props.selectedAnswer)
       }, [selectedAnswer])
@@ -51,7 +53,7 @@ export default function Questions(props) {
                 {shuffledAnswers.map((value, index) =>{
                     //There is no prop called isCorrect
                     //check this log in your browser.
-                    console.log("isCorrect prop", props.isCorrect)
+                    
                     /**
                      * The conditional logic is close... 
                      * 
@@ -83,8 +85,8 @@ export default function Questions(props) {
                     onClick={() => props.onSelectAnswer(value)}
                     className={
                         props.selectedAnswer === value ? "clicked" : 
-                        props.selectedAnswer === value ? "correct" :
-                        props.incorrect_answers === value ? "incorrect" 
+                        props.selectedAnswer === value && props.correct_answer === value ? "correct" :
+                        props.selectedAnswer === value && props.incorrect_answers === value ? "incorrect" 
                         : ""
             
                       }

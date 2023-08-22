@@ -32,7 +32,7 @@ function App() {
      
      }
 
-     console.log(quizQuestions)
+     
   
      const handleAnswerSelection = (questionId, selectedAnswer) => {
       setSelectedAnswers((prevAnswer) => ({
@@ -62,9 +62,10 @@ function App() {
     console.log(selectedAnswers)
   const updatedQuizQuestions = quizQuestions.map((question) => {
     const selectedAnswerForQuestion = selectedAnswers[question.id]
-
+    setGameOver(true)
     if(selectedAnswerForQuestion === question.correct_answer){
       score++
+      
 
       //  *  - display h3 with score
       //  *  - display "Play again" button
